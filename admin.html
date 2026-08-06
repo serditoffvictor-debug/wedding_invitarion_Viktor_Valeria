@@ -1,0 +1,12 @@
+
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Гости — Виктор & Валерия</title>
+<link rel="stylesheet" href="/static/style.css"></head>
+<body class="admin-body">
+<main class="admin">
+<div class="admin-head"><div><p class="eyebrow">АДМИН-ПАНЕЛЬ</p><h1>Ответы гостей</h1></div>
+<a class="btn" href="/admin/export.xlsx?key={{ request.args.get('key') }}">Скачать Excel</a></div>
+<div class="table-wrap"><table><thead><tr><th>Имя</th><th>Присутствие</th><th>Формат</th><th>Алкоголь</th><th>Трансфер</th><th>Аллергии</th><th>Дети</th><th>Комментарий</th><th>Дата</th></tr></thead>
+<tbody>{% for g in guests %}<tr><td>{{g.name}}</td><td>{{g.attendance}}</td><td>{{g.companion}}</td><td>{{g.alcohol}}</td><td>{{g.transfer}}</td><td>{{g.allergies}}</td><td>{{g.children}}</td><td>{{g.comments}}</td><td>{{g.created_at}}</td></tr>{% else %}<tr><td colspan="9">Пока нет ответов.</td></tr>{% endfor %}</tbody></table></div>
+</main></body></html>

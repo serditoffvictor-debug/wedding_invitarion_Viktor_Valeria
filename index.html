@@ -1,0 +1,147 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Виктор & Валерия — 10.06.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow">ПРИГЛАШЕНИЕ НА СВАДЬБУ</p>
+    <h1>Виктор <span>&</span> Валерия</h1>
+    <p class="date">10 · 06 · 2026</p>
+    <a class="btn light" href="#invite">Открыть приглашение</a>
+  </div>
+</header>
+
+<main>
+<section id="invite" class="section intro">
+  <div class="ornament">✦</div>
+  <p class="eyebrow">ДОРОГИЕ РОДНЫЕ И БЛИЗКИЕ</p>
+  <h2>Мы женимся!</h2>
+  <p>И очень хотим, чтобы в этот особенный день рядом с нами были люди, которые дороги нам больше всего.</p>
+  <p>Приглашаем вас разделить с нами радость, улыбки, объятия и начало нашей семейной истории.</p>
+  <p class="signature">С любовью,<br><b>Виктор & Валерия</b></p>
+</section>
+
+<section class="section details">
+  <div class="section-head">
+    <p class="eyebrow">ДЕНЬ, КОТОРЫЙ МЫ ЗАПОМНИМ НАВСЕГДА</p>
+    <h2>10 июня 2026</h2>
+  </div>
+  <div class="cards">
+    <div class="card"><span class="icon">◷</span><h3>Сбор гостей</h3><p>16:00</p></div>
+    <div class="card"><span class="icon">⌂</span><h3>Место</h3><p>Aura Kitchen&Bar</p><small>Монастырская улица, 32б, Пермь</small></div>
+  </div>
+</section>
+
+<section class="section map-section">
+  <div class="map-card">
+    <div class="map-copy">
+      <p class="eyebrow">МЫ ЖДЁМ ВАС</p>
+      <h2>Aura Kitchen&Bar</h2>
+      <p>Монастырская улица, 32б, Пермь</p>
+      <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Aura+Kitchen%26Bar%2C+Монастырская+улица%2C+32б%2C+Пермь">Открыть маршрут</a>
+    </div>
+    <iframe class="map" loading="lazy" src="https://www.google.com/maps?q=Aura%20Kitchen%26Bar%2C%20%D0%9C%D0%BE%D0%BD%D0%B0%D1%81%D1%82%D1%8B%D1%80%D1%81%D0%BA%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%2032%D0%B1%2C%20%D0%9F%D0%B5%D1%80%D0%BC%D1%8C&output=embed"></iframe>
+  </div>
+</section>
+
+<section class="section schedule">
+  <p class="eyebrow">ПРОГРАММА</p>
+  <h2>Как пройдёт наш день</h2>
+  <p class="muted">Тайминг пока в разработке — мы обязательно добавим его сюда.</p>
+  <div class="timeline">
+    <div><b>16:00</b><span>Сбор гостей</span></div>
+    <div class="placeholder"><b>•</b><span>Программа вечера будет опубликована позже</span></div>
+  </div>
+</section>
+
+<section class="section dress">
+  <div>
+    <p class="eyebrow">DRESS CODE</p>
+    <h2>Оливковая история</h2>
+    <p>Будем рады, если ваши образы поддержат атмосферу нашего праздника. Необязательно строго следовать палитре — главное, чтобы вам было красиво и комфортно.</p>
+  </div>
+  <div class="palette">
+    <span style="--c:#5f6848"></span><span style="--c:#7c8663"></span><span style="--c:#b6b39a"></span><span style="--c:#ded8c8"></span><span style="--c:#f7f4ec"></span>
+    <div><b>OLIVE</b><b>SAGE</b><b>BEIGE</b><b>CHAMPAGNE</b><b>IVORY</b></div>
+  </div>
+</section>
+
+<section class="section gallery">
+  <p class="eyebrow">НАША ИСТОРИЯ</p>
+  <h2>Фотографии</h2>
+  <p class="muted">Здесь появятся наши любимые фотографии. Добавим их перед публикацией сайта.</p>
+  <div class="photo-grid">
+    <div class="photo-placeholder">Фото 01</div><div class="photo-placeholder">Фото 02</div>
+    <div class="photo-placeholder wide">Фото 03</div><div class="photo-placeholder">Фото 04</div>
+  </div>
+</section>
+
+<section id="rsvp" class="section rsvp">
+  <div class="rsvp-head">
+    <p class="eyebrow">ПОДТВЕРДИТЕ ПРИСУТСТВИЕ</p>
+    <h2>Будете с нами?</h2>
+    <p>Пожалуйста, заполните анкету — это поможет нам подготовить праздник так, чтобы всем было комфортно.</p>
+  </div>
+  {% if request.args.get('sent') %}
+    <div class="success">Спасибо! Ваш ответ сохранён. Будем рады увидеть вас на нашем празднике ♥</div>
+  {% endif %}
+  {% if request.args.get('error') %}
+    <div class="error">{{ request.args.get('error') }}</div>
+  {% endif %}
+  <form method="post" action="/rsvp" class="form">
+    <label>Имя и фамилия *<input name="name" required placeholder="Например, Анна Петрова"></label>
+    <fieldset><legend>Вы будете с нами? *</legend>
+      <label class="radio"><input type="radio" name="attendance" value="Приду" required> Приду</label>
+      <label class="radio"><input type="radio" name="attendance" value="Не смогу прийти"> Не смогу прийти</label>
+    </fieldset>
+    <fieldset><legend>Формат присутствия *</legend>
+      <label class="radio"><input type="radio" name="companion" value="Один/одна" required> Один/одна</label>
+      <label class="radio"><input type="radio" name="companion" value="С парой"> С парой</label>
+    </fieldset>
+    <label>Предпочтения по алкоголю
+      <div class="checks">
+        <label><input type="checkbox" name="alcohol" value="Шампанское"> Шампанское</label>
+        <label><input type="checkbox" name="alcohol" value="Вино красное"> Вино красное</label>
+        <label><input type="checkbox" name="alcohol" value="Вино белое"> Вино белое</label>
+        <label><input type="checkbox" name="alcohol" value="Водка"> Водка</label>
+        <label><input type="checkbox" name="alcohol" value="Виски"> Виски</label>
+      </div>
+    </label>
+    <label>Нужен ли трансфер?
+      <select name="transfer"><option>Нет</option><option>Да</option></select>
+    </label>
+    <label>Аллергии / особенности питания<textarea name="allergies" rows="2" placeholder="Если нет — напишите «нет»"></textarea></label>
+    <fieldset><legend>Будут дети?</legend>
+      <label class="radio"><input type="radio" name="children" value="Нет" checked> Нет</label>
+      <label class="radio"><input type="radio" name="children" value="Да"> Да</label>
+    </fieldset>
+    <label>Дополнительный комментарий<textarea name="comments" rows="3" placeholder="Что нам важно знать?"></textarea></label>
+    <button class="btn" type="submit">Отправить ответ</button>
+    <p class="privacy">Ваши ответы нужны только для организации праздника.</p>
+  </form>
+</section>
+
+<section class="closing">
+  <p>До встречи</p><h2>10 · 06 · 2026</h2><span>Виктор & Валерия</span>
+</section>
+</main>
+<script>
+document.querySelectorAll('input[name="alcohol"]').forEach(el => {
+  el.addEventListener('change', () => {
+    const checked = [...document.querySelectorAll('input[name="alcohol"]:checked')].map(x => x.value);
+    document.querySelector('input[name="alcohol"]').closest('label').dataset.value = checked.join(', ');
+  });
+});
+</script>
+</body>
+</html>
