@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Конверт как первый экран -->
+  <!-- НАЧАЛО БЛОКА КОНВЕРТА -->
 <div id="welcome-overlay">
   <div class="envelope-container">
     <div class="envelope" id="envelope">
@@ -19,13 +19,14 @@
       <div class="envelope-back"></div>
     </div>
   </div>
-
   <div id="content" class="hidden">
     <h2>Для вас — приглашение</h2>
     <p>Откройте конверт, чтобы увидеть детали нашего дня.</p>
     <button id="continue-btn" class="btn light">Продолжить</button>
   </div>
 </div>
+<!-- КОНЕЦ БЛОКА КОНВЕРТА -->
+
 
 <header class="hero">
   <div class="hero-overlay"></div>
@@ -153,31 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const continueBtn = document.getElementById('continue-btn');
   const overlay = document.getElementById('welcome-overlay');
 
-  // Показываем конверт только если пользователь ещё не видел «продолжить»
-  // (простая проверка через localStorage)
-  if (localStorage.getItem('envelopeOpened')) {
-    overlay.style.display = 'none';
-  }
-
-  if (envelope && content) {
-    envelope.addEventListener('click', () => {
-      envelope.classList.add('opening');
-      setTimeout(() => {
-        envelope.style.display = 'none';
-        content.classList.remove('hidden');
-      }, 800);
-    });
-  }
-
-  if (continueBtn) {
-    continueBtn.addEventListener('click', () => {
-      localStorage.setItem('envelopeOpened', 'true');
-      overlay.style.display = 'none';
-    });
-  }
-});
-</script>
-
 <section class="closing">
   <p>До встречи</p><h2>10 · 06 · 2026</h2><span>Виктор & Валерия</span>
 </section>
@@ -190,5 +166,39 @@ document.querySelectorAll('input[name="alcohol"]').forEach(el => {
   });
 });
 </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const envelope = document.getElementById('envelope');
+  const content = document.getElementById('content');
+  const continueBtn = document.getElementById('continue-btn');
+  const overlay = document.getElementById('welcome-overlay');
+
+  // 1. Проверка: если уже открывали, сразу скрываем экран конверта
+  if (localStorage.getItem('envelopeOpened')) {
+    overlay.style.display = 'none';
+  }
+
+  // 2. Логика клика по конверту
+  if (envelope && content) {
+    envelope.addEventListener('click', () => {
+      envelope.classList.add('opening'); // Запускаем 3D поворот
+      
+      setTimeout(() => {
+        envelope.style.display = 'none'; // Скрываем конверт после поворота
+        content.classList.remove('hidden'); // Показываем кнопку "Продолжить"
+      }, 800); // Время должно совпадать с transition в CSS
+    });
+  }
+
+  // 3. Логика кнопки "Продолжить"
+  if (continueBtn) {
+    continueBtn.addEventListener('click', () => {
+      localStorage.setItem('envelopeOpened', 'true'); // Запоминаем, что открыли
+      overlay.style.display = 'none'; // Убираем весь экран конверта
+    });
+  }
+});
+</script>
+
 </body>
 </html>
