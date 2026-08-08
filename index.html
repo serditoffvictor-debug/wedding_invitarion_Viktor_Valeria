@@ -11,6 +11,22 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Конверт как первый экран -->
+<div id="welcome-overlay">
+  <div class="envelope-container">
+    <div class="envelope" id="envelope">
+      <div class="envelope-front"></div>
+      <div class="envelope-back"></div>
+    </div>
+  </div>
+
+  <div id="content" class="hidden">
+    <h2>Для вас — приглашение</h2>
+    <p>Откройте конверт, чтобы увидеть детали нашего дня.</p>
+    <button id="continue-btn" class="btn light">Продолжить</button>
+  </div>
+</div>
+
 <header class="hero">
   <div class="hero-overlay"></div>
   <div class="hero-content">
