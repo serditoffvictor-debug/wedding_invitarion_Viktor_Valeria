@@ -146,6 +146,37 @@
     <p class="privacy">Ваши ответы нужны только для организации праздника.</p>
   </form>
 </section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const envelope = document.getElementById('envelope');
+  const content = document.getElementById('content');
+  const continueBtn = document.getElementById('continue-btn');
+  const overlay = document.getElementById('welcome-overlay');
+
+  // Показываем конверт только если пользователь ещё не видел «продолжить»
+  // (простая проверка через localStorage)
+  if (localStorage.getItem('envelopeOpened')) {
+    overlay.style.display = 'none';
+  }
+
+  if (envelope && content) {
+    envelope.addEventListener('click', () => {
+      envelope.classList.add('opening');
+      setTimeout(() => {
+        envelope.style.display = 'none';
+        content.classList.remove('hidden');
+      }, 800);
+    });
+  }
+
+  if (continueBtn) {
+    continueBtn.addEventListener('click', () => {
+      localStorage.setItem('envelopeOpened', 'true');
+      overlay.style.display = 'none';
+    });
+  }
+});
+</script>
 
 <section class="closing">
   <p>До встречи</p><h2>10 · 06 · 2026</h2><span>Виктор & Валерия</span>
